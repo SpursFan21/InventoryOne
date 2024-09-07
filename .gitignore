@@ -1,0 +1,44 @@
+# Node modules
+node_modules/
+
+# Build output
+build/
+dist/
+
+# Dependency directories
+/.pnp
+.pnp.js
+
+# dotenv environment variables file
+.env
+
+# Log files
+*.log
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Go binary and compiled files
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go module cache
+/go.sum
+/go.mod
+
+# VS Code settings
+.vscode/
+
+# IDE files
+.idea/
+*.swp
+
+# Other files
+*.tgz
+*.gz
