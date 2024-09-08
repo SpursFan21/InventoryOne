@@ -55,16 +55,6 @@ services:
     depends_on:
       - kafka
 
-  mongodb:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:3000"
-
   auth-service:
     build:  ./auth-service
     dockerfile: Dockerfile
@@ -76,3 +66,24 @@ services:
       - mongo
     networks:
       - microservices-network
+
+  user-service:
+    build: ./user-service
+    dockerfile: Dockerfile
+    container_name: user-service
+    ports:
+      - "8086:8086"
+    depends_on:
+      - mongo
+    networks:
+      - microservices-network
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
