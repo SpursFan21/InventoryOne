@@ -8,6 +8,8 @@ This project is a comprehensive inventory management system built using a micros
 - **Notification Service**: Handles sending notifications related to inventory and order statuses.
 - **Order Service**: Manages customer orders and order processing.
 - **Shipment Service**: Tracks and updates shipment statuses as they progress through various stages.
+- **User Service**: Manages users, their roles, and integrates role-based access control (RBAC). Handles user creation, deletion, and updates, with optional Kafka integration for broadcasting user-related events.
+- **Auth Service**: Handles authentication and authorization, integrating with the user service for session-based authentication and token validation.
 
 ## Technologies Used
 
@@ -33,7 +35,7 @@ This project is a comprehensive inventory management system built using a micros
    - Start the development server: `npm start`
 
 2. **Backend Services**:
-   - Navigate to each service directory (e.g., `inventory-service`, `notification-service`, etc.).
+   - Navigate to each service directory (e.g., `inventory-service`, `notification-service`, `order-service`, `shipment-service`, `user-service`, `auth-service`).
    - Build and run the service:
      ```bash
      go mod tidy
@@ -45,6 +47,17 @@ This project is a comprehensive inventory management system built using a micros
 
 4. **Kafka**:
    - Ensure Kafka is running and accessible at `kafka:9092`.
+
+### Docker
+
+1. **Build Docker Images**:
+   - Navigate to each service directory and build Docker images:
+     ```bash
+     docker build -t [service-name] .
+     ```
+
+2. **Run Docker Containers**:
+   - Run the containers using Docker Compose or individual `docker run` commands.
 
 ## API Endpoints
 
@@ -66,6 +79,18 @@ This project is a comprehensive inventory management system built using a micros
 - **GET /shipments**: Retrieve all shipments.
 - **GET /shipments/:shipmentId**: Track the status of a specific shipment.
 
+### User Service
+- **POST /users**: Create a new user (Admins only).
+- **GET /users**: Retrieve all users.
+- **GET /users/:id**: Retrieve a specific user by ID.
+- **PUT /users/:id**: Update user information (Admins only).
+- **DELETE /users/:id**: Delete a user (Admins only).
+
+### Auth Service
+- **POST /auth/login**: Authenticate a user and obtain a session token.
+- **POST /auth/logout**: End a user's session.
+- **GET /auth/validate**: Validate a session token.
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request to contribute.
@@ -73,5 +98,6 @@ Contributions are welcome! Please open an issue or submit a pull request to cont
 ## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](./LICENSE) file for details.
+
 
 
